@@ -1,0 +1,42 @@
+    int maxLevelSum(TreeNode* root) 
+    {
+    
+    if (root == NULL) 
+        return 0; 
+
+	queue<TreeNode*> q; 
+
+	q.push(root); 
+	int max_sum = 0;
+    int level = 0;
+    int max_level =0;
+        
+	while (q.empty() == false) 
+	{ 
+      	int count = q.size();
+      	int sum = 0;
+      	while( count > 0)
+        {
+           
+		TreeNode *node = q.front(); 
+		sum = sum + node->val;
+		q.pop(); 
+
+		if (node->left != NULL) 
+			q.push(node->left); 
+
+		if (node->right != NULL) 
+			q.push(node->right);
+            
+      	count--;
+        
+        }
+        level++;
+      if ( sum > max_sum)
+      {
+          max_sum = sum;
+        max_level = level;
+      }
+	} 
+  return max_level;
+    }
