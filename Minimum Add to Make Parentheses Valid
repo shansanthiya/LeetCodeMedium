@@ -1,0 +1,17 @@
+int minAddToMakeValid(string S) {
+        int close = 0; int open =0;
+        for(int i = 0; i < S.length(); i++)
+        {
+            if(S[i] == '(')
+                close++;
+            else if( S[i] == ')')
+            {
+                if(close == 0)
+                    open++;
+                else
+                    close--;
+            }
+            
+        }
+        return open+close;
+    }
