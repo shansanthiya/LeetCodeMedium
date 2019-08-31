@@ -1,0 +1,15 @@
+int postOrder( TreeNode* root, int *moves)
+    {
+        if(root == NULL)
+            return 0;
+        int left = postOrder(root->left, moves);
+        int right = postOrder(root->right, moves);
+        *moves += abs(left) + abs(right);
+        return root->val + left +right -1;
+    }
+    int distributeCoins(TreeNode* root) {
+        int moves = 0;
+        postOrder(root, &moves);
+        return moves;
+        
+    }
