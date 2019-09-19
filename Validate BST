@@ -1,0 +1,14 @@
+bool isValidBSTUtil(struct TreeNode* root, struct TreeNode* min, struct TreeNode* max)
+{
+    if(root == NULL)
+        return true;
+    else if((min && root->val <= min->val) || (max && root->val >= max->val))
+        return false;
+    return isValidBSTUtil(root->left, min, root) && isValidBSTUtil(root->right, root, max);
+}
+
+bool isValidBST(struct TreeNode* root){
+    
+    return isValidBSTUtil(root, NULL, NULL);
+
+}
