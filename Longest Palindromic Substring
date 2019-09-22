@@ -1,0 +1,30 @@
+public:
+    string longestPalindrome(string s) {
+        int len = s.length();
+        if (len == 0 || len == 1)
+            return s;
+        
+        for(int i = 0; i < len-1; i++)
+        {
+            checkPalindrome( s, i, i);
+            checkPalindrome( s, i, i+1);
+        }
+        
+        return s.substr(start, maxLen);
+    }
+    void checkPalindrome( string s, int j, int k)
+    {
+        while(j >= 0 && k < s.length() && s[j] == s[k] )
+        {
+            j--;
+            k++;
+        }
+        if(maxLen < k-j-1)
+        {
+            start = j + 1;
+            maxLen = k-j-1;
+        }
+    }
+    
+private:
+    int start, maxLen;
