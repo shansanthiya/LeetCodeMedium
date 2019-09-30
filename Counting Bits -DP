@@ -1,12 +1,28 @@
+
+/*
+Count set bits in an integer
+unsigned int countSetBits(unsigned int n) 
+{ 
+unsigned int count = 0; 
+while (n) 
+{ 
+	count += n & 1; 
+	n >>= 1; 
+} 
+return count; 
+} 
+
+*/
 vector<int> countBits(int num) {
         vector<int> res(num+1, 0);
-        int offset = 1;
         
-        for(int i = 1; i < num+1; i++)
+        
+        for(int i = 1; i <= num; i++)
         {
-            if(offset*2 == i)
-                offset*= 2;
-            res[i] = res[i - offset] + 1;
+          
+            res[i] = res[i&(i-1)]  +1;
         }
         return res;
     }
+
+
