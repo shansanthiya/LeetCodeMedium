@@ -1,0 +1,28 @@
+ vector<int> searchRange(vector<int>& A, int target) {
+    int l = 0, h = A.size() - 1;
+    vector<int> ret(2, -1);
+    if(A.size() == 0)
+        return ret;
+        
+    while (l < h)
+    {
+        int mid = (l + h) /2;
+        if (A[mid] < target) 
+            l = mid + 1;
+        else h = mid;
+    }
+    if (A[l]!=target) return ret;
+    else ret[0] = l;
+    
+    h = A.size()-1;  
+    while (l < h)
+    {
+        int mid = (l + h) /2 +1;	
+        if (A[mid] > target) 
+            h = mid - 1;  
+        else l = mid;				
+    }
+    ret[1] = h;
+    return ret;  
+        
+    }
