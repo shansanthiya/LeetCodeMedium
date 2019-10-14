@@ -1,0 +1,37 @@
+ bool canJump(vector<int>& nums) {
+        
+        int reach = 0;
+        int i;
+        for( i = 0; i < nums.size() && i <= reach; i++)
+        {
+            reach = max(i + nums[i], reach);
+        }
+        
+        return i == nums.size();
+    }
+};
+
+
+/*  HARD   */
+int jump(vector<int>& nums) {
+        int n = nums.size();
+        if(n == 0)
+            return 0;
+        int currPos = nums[0];
+        int reach = nums[0];
+        int step = 1;
+        for(int i = 1; i < nums.size() && i <= reach; i++)
+        {
+            currPos = max(i + nums[i], currPos);
+            if(i == nums.size() - 1)
+                return step;
+            if (i == reach)
+            {
+                reach = currPos;
+                step++;
+            }
+        }
+        
+        
+        return 0;
+    }
