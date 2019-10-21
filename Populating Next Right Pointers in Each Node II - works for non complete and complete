@@ -1,0 +1,27 @@
+ Node* connect(Node* root) 
+ {
+        if (!root)
+            return NULL;
+        queue<Node*> q;
+        q.push(root);
+        Node *lastNode = root;
+        while (!q.empty()) 
+        {
+            Node *tmp = q.front();
+            q.pop();
+            if (tmp -> left)
+                q.push(tmp -> left);
+            if (tmp -> right)
+                q.push(tmp -> right);
+            if (tmp == lastNode) 
+            {
+                tmp -> next = NULL;
+                lastNode = q.back();
+            }
+            else 
+            {
+                tmp -> next = q.front();
+            }
+        }
+        return root;
+ }
