@@ -1,0 +1,30 @@
+string removeKdigits(string num, int k) {
+    
+       string ans = "";                                        
+       
+       for (char c : num) 
+       {
+           while (ans.length() && ans.back() > c && k) 
+           {
+               cout << "back :" << ans.back() << endl;
+               ans.pop_back();                                  
+               k--;                                             
+           }
+           
+           if (ans.length() || c != '0') 
+           { 
+               cout << c << endl;
+               ans.push_back(c);
+           }  
+        }
+       
+       while (ans.length() && k--) 
+       { 
+           ans.pop_back(); 
+       }          
+       
+       if(ans.empty())
+            return "0";
+       return ans;
+        
+    }
