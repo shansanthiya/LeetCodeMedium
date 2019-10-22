@@ -1,0 +1,39 @@
+ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode* next = NULL;
+        ListNode* prev = NULL;
+        ListNode* curr  = head;
+        int count = 0;
+        
+        /* 
+        //This code added to not reverse if there are less than K elements
+        
+        while(curr != NULL)
+        {
+            count++;
+            curr = curr->next;
+            if(count == k)
+                break;
+        }
+        
+        if(count < k)
+            return head;
+        
+        curr = head;
+        count  = 0;
+        */
+        
+        while(curr != NULL && count < k)
+        {
+            next =  curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+            count++;
+        }
+        
+        if(next != NULL)
+        head->next = reverseKGroup(next, k);
+        
+        head =  prev;
+        return head;
+    }
