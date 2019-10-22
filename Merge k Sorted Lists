@@ -1,0 +1,43 @@
+ struct compare
+    {
+      bool operator()(ListNode* a, ListNode* b)
+      {
+          return a->val > b->val;
+      }
+    };
+    
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+        priority_queue< ListNode*, vector<ListNode*>, compare> pq;
+        
+        int k = lists.size();
+        ListNode* head = NULL;
+        ListNode* last;
+        
+        for(auto ll : lists)
+        {
+            if ( ll != NULL)
+                pq.push(ll);
+        }
+        
+        while(!pq.empty())
+        {
+            ListNode* top = pq.top();
+            pq.pop();
+            
+            if(top->next != NULL)
+            {
+                pq.push(top->next);
+            }
+            if(head == NULL)
+            {
+                head = top;
+                last = top;
+            }
+            else
+            {
+                last->next = top;
+                last = top;
+            }
+        }
+        return head;
+    }
