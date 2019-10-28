@@ -1,0 +1,36 @@
+void MoveNode( ListNode** dest, ListNode** src)
+    {
+        ListNode* temp = *src;
+        *src = temp->next;
+        temp->next = *dest;
+        *dest = temp;
+    }
+    ListNode* oddEvenList(ListNode* head) {
+        
+        ListNode* curr = head;
+        
+        ListNode odd(0);
+        ListNode even(0);
+        ListNode* oddTail = &odd;
+        ListNode* evenTail = &even;
+        odd.next = NULL;
+        even.next = NULL;
+        
+        bool evenCheck = false;
+        while(curr != NULL)
+        {
+            if(evenCheck)
+            {
+                MoveNode(&(evenTail->next), &curr);
+                evenTail = evenTail->next;
+            }
+            else
+            {
+                MoveNode(&(oddTail->next), &curr);
+                oddTail = oddTail->next;
+            }
+            evenCheck = !evenCheck;
+        }
+        oddTail->next = even.next;
+        return odd.next;
+    }
