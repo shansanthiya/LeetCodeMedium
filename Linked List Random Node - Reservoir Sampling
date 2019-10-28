@@ -1,0 +1,46 @@
+class Solution {
+    ListNode* headNode;
+public:
+    Solution(ListNode* head) {
+        headNode = head;
+    }
+    
+    /** Returns a random node's value. */
+    int getRandom() {
+        int res = headNode->val;
+        ListNode* node = headNode->next;
+        int i = 1;
+        while(node)
+        {
+            int j = rand() % (i + 1);
+            
+            if(j == 0)
+                res = node->val;
+            i++;
+            node = node->next;
+        }
+        return res;
+    }
+};
+
+// RESERVOIR SAMPLING - GEEKS FOR GEEKS
+#include<time.h>
+
+vector<int> RandomSampling( vector<int> arr)
+{
+  int i = 0;
+  vector<int>res(k);
+  for(i = 0; i < k; i++)
+  {
+    res[i] = arr[i];
+  }
+  srand(time(NULL));
+  
+  for(; i < n ; i++)
+  {
+    int j = rand() % (i + 1);
+    if(j < k)
+      res[j] = arr[i];
+  }
+  return res;
+}
