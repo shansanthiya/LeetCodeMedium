@@ -1,0 +1,19 @@
+int result = INT_MIN;
+    int count = 0;
+    void kthSmallestUtil(TreeNode* root, int k)
+    {
+        
+        if(root == NULL)
+            return;
+        
+        kthSmallestUtil(root->left, k);
+        count++;
+        if(k == count)
+            result =  root->val;
+        kthSmallestUtil(root->right, k);
+    }
+    
+    int kthSmallest(TreeNode* root, int k) {
+        kthSmallestUtil(root, k);
+        return result;
+    }
