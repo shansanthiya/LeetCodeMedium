@@ -1,0 +1,17 @@
+vector<vector<int>> res;
+    void pathSumUtil(TreeNode* root, int sum, vector<int>& path)
+    {
+        if (root == NULL)
+            return;
+        path.push_back(root->val);
+        if(root->left == NULL && root->right == NULL && root->val == sum )
+            res.push_back(path);
+        pathSumUtil(root->left, sum - root->val, path);
+        pathSumUtil(root->right, sum - root->val, path);
+        path.pop_back();
+    }
+    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+        vector<int> p;
+        pathSumUtil(root, sum,p);
+        return res;
+    }
