@@ -1,0 +1,41 @@
+// Fill the matrix with 1 to num^2 in spiral order
+
+vector<vector<int>> generateMatrix(int num){
+    
+        int m = num;
+        int n = num;
+        vector<vector<int>>res(num, vector<int> (num, 0));
+        
+        int r = 0;
+        int c = 0;
+        int i = 0;
+        
+        int sq = 1;
+        while( r < m && c < n && sq <= (num * num))
+        {
+            
+            for(i = r; i < n; i++)
+                res[r][i] = sq++;
+            r++;
+            
+            for(i = r; i < m; i++)
+                res[i][n-1] = sq++;
+            n--;
+            
+            if(r < m)
+            {
+                for(i = n -1; i >= c; i--)
+                    res[m-1][i] = sq++;
+                m--;
+            }
+            
+            if(c < n)
+            {
+                for(i = m - 1; i >= r; i--)
+                    res[i][c] = sq++;
+                c++;
+            }
+        }
+        return res;
+      
+    }
