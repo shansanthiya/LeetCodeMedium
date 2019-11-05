@@ -1,0 +1,43 @@
+ struct Compare {
+        bool operator()(const pair<int, string>& lhs, const pair<int, string>& rhs) const {
+            if (lhs.first != rhs.first)
+                return lhs.first > rhs.first;
+            return lhs.second < rhs.second;
+        }
+    };
+
+    vector<string> topKFrequent(vector<string>& words, int k) {
+        priority_queue<pair<int,string>, vector<pair<int,string>>, Compare> pq;
+        unordered_map<string, int> mp;
+        unordered_map<string, int>::iterator i;
+        
+        for(int i; i < words.size(); i++)
+        {
+            mp[words[i]] += 1;
+            
+        }
+        
+        for(i = mp.begin(); i != mp.end(); i++)
+        {
+            pq.push({i->second, i->first});
+            
+            if(pq.size() > k)
+            {
+                
+                pq.pop();
+            }
+        }
+        
+        vector<string> res;
+        while(!pq.empty())
+        {
+            string temp = pq.top().second;
+            res.push_back(temp);
+            
+            pq.pop();
+            
+        }
+        reverse(res.begin(), res.end());
+        return res;
+        
+    }
