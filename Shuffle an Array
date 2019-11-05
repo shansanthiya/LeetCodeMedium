@@ -1,0 +1,24 @@
+class Solution {
+    vector<int> org;
+public:
+    Solution(vector<int>& nums) {
+        org = nums;
+    }
+    
+    /** Resets the array to its original configuration and return it. */
+    vector<int> reset() {
+        return org;
+    }
+    
+    /** Returns a random shuffling of the array. */
+    vector<int> shuffle() {
+        vector<int> res;
+        res = org;
+        for (int i = 0;i < res.size();i++) 
+        {
+            int pos = rand()%(res.size()-i);
+            swap(res[i+pos], res[i]);
+        }
+        return res;
+    }
+};
