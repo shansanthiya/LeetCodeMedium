@@ -1,0 +1,21 @@
+int leastBricks(vector<vector<int>>& wall) {
+        unordered_map<int, int> edges;
+        int n = wall.size();
+        int res = wall.size();
+       
+        int width = 0;
+        for(auto row: wall){
+            width = 0;
+            for(int i = 0; i <row.size()-1; i++){
+                width += row[i];
+                edges[width] += 1;
+            }
+        }
+        
+        for(auto edge: edges) 
+        {
+            cout << edge.first << "  :: " << edge.second << endl;
+            res = min(res, n - edge.second);
+        }
+        return res;
+    }
