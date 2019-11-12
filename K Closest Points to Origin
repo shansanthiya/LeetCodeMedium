@@ -1,5 +1,5 @@
 vector<vector<int>> kClosest(vector<vector<int>>& points, int K) {
-        priority_queue<vector<int>, vector<vector<int>>, compare> pq;
+        priority_queue<vector<int>, vector<vector<int>>, compare> pq; //maxHeap
         
         for(int i = 0; i < points.size(); i++)
         {
