@@ -1,0 +1,24 @@
+ ListNode *detectCycle(ListNode *head) {
+        if(head == NULL || head->next == NULL)
+            return NULL;
+        
+        ListNode* fastptr = head;
+        ListNode* slowptr = head;
+        ListNode* start = head;
+       
+        while(fastptr->next && fastptr->next->next)
+        {
+            fastptr = fastptr->next->next;
+            slowptr = slowptr->next;
+            if(fastptr == slowptr)
+            {
+                while(slowptr != start)
+                {
+                    slowptr = slowptr->next;
+                    start = start->next;
+                }
+                return start;
+            }
+        }
+            return NULL;
+    }
